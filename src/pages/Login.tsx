@@ -1,56 +1,71 @@
-import { useState } from 'react';
-// import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setEmailAction } from '../redux/actions';
 
 function Login() {
   const [passwordValidation, setPasswordValidation] = useState('');
   const [emailValidation, setEmailValidation] = useState('');
-  // const navigation = useNavigate();
+  const [disabled, setDisabled] = useState(true);
+  const navigation = useNavigate();
+  const dispatch = useDispatch();
+
+  const validateEmail = () => {
+    const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return regexEmail.test(emailValidation);
+  };
+  const disabledButton = () => {
+    setDisabled(passwordValidation.length < 6 || !validateEmail());
+  };
+
+  useEffect(() => {
+    disabledButton();
+  });
 
   const validateSetPassword = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
     setPasswordValidation(event.target.value);
-    // setEmailValidation(event.target.value);
+    disabledButton();
   };
 
   const validateSetEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
     setEmailValidation(event.target.value);
+    disabledButton();
   };
 
-  const validateEmail = () => {
-    const regexEmail = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.([a-z]+)?$/i;
-    return regexEmail.test(emailValidation);
+  const validateForms = (event: React.FormEvent) => {
+    event.preventDefault();
+    dispatch(setEmailAction(emailValidation));
+    navigation('/carteira');
   };
-  const disabledButton = () => {
-    return passwordValidation.length < 6 || validateEmail();
-  };
-
-  // const validateForms = () => {
-  //   return disabledButton() || validateEmail();
-  // };
 
   return (
-    <form>
+    <form onSubmit={ validateForms }>
       <label htmlFor="input-email">
+        Email:
         <input
           type="email"
           name="email"
           id="input-email"
           data-testid="email-input"
+          value={ emailValidation }
           onChange={ validateSetEmail }
         />
       </label>
       <label htmlFor="input-password">
+        Senha:
         <input
           type="password"
-          name=""
+          name="password"
           id="input-password"
           data-testid="password-input"
           minLength={ 6 }
+          value={ passwordValidation }
           onChange={ validateSetPassword }
         />
       </label>
-      <button type="submit" disabled={ disabledButton() }>Entrar</button>
+      <button type="submit" disabled={ disabled }>Entrar</button>
     </form>
   );
 }
