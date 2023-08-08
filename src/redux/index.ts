@@ -1,8 +1,8 @@
 import { legacy_createStore as createStore } from 'redux';
 
-import { ReducersCombine } from './reducers';
+import { rootReducer } from './reducers';
 
-export const store = createStore(ReducersCombine);
+export const store = createStore(rootReducer);
 
 if (window.Cypress) {
   window.store = store;

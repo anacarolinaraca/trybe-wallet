@@ -9,6 +9,7 @@ export type GlobalWallet = {
 };
 
 export type ExpensesType = {
+  id: number,
   value: string,
   description: string,
   currency: string,
@@ -25,7 +26,7 @@ export type ExchangeRatesType = {
   }
 };
 
-export type Combine = {
+export type RootCombine = {
   user: GlobalUser,
   wallet: GlobalWallet
 };

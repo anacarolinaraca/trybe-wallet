@@ -1,11 +1,11 @@
 import { useSelector } from 'react-redux';
-import { Combine, GlobalUser, GlobalWallet } from '../types';
+import { RootCombine, GlobalUser, GlobalWallet } from '../types';
 
 function Header() {
-  const globalState = useSelector((stateUser: Combine):GlobalUser => stateUser.user);
+  const globalState = useSelector((stateUser: RootCombine):GlobalUser => stateUser.user);
 
-  const globalWallet = useSelector((ReducersCombine: Combine)
-  : GlobalWallet => ReducersCombine.wallet);
+  const globalWallet = useSelector((rootReducer: RootCombine)
+  : GlobalWallet => rootReducer.wallet);
 
   const totalExpenses = globalWallet.expenses.reduce((total, expense) => {
     const exchangeRate = Number(expense.exchangeRates[expense.currency].ask);
