@@ -1,23 +1,31 @@
 import { useSelector } from 'react-redux';
-import { GlobalState } from '../types';
+import { Combine, GlobalUser, GlobalWallet } from '../types';
 
 function Header() {
-  const globalState = useSelector((state: GlobalState) => state);
+  const globalState = useSelector((stateUser: Combine):GlobalUser => stateUser.user);
+
+  const globalWallet = useSelector((ReducersCombine: Combine)
+  : GlobalWallet => ReducersCombine.wallet);
+
+  const totalExpenses = globalWallet.expenses.reduce((total, expense) => {
+    const exchangeRate = Number(expense.exchangeRates[expense.currency].ask);
+    return total + Number(expense.value) * exchangeRate;
+  }, 0);
+
   return (
-    <div>
+    <header>
       <p data-testid="email-field">
         Email:
         {' '}
-        {globalState.user.email}
+        {globalState.email}
       </p>
       <p data-testid="total-field">
-        Despesas:
-        0
+        {totalExpenses.toFixed(2)}
       </p>
       <p data-testid="header-currency-field">
         BRL
       </p>
-    </div>
+    </header>
   );
 }
 
