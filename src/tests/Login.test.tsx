@@ -8,21 +8,15 @@ describe('Testes no Login', () => {
   const password = 'abc123';
 
   test('Verifique se existe um botão, campo de login e um campo de senha com testID', () => {
-    const inputEmail = screen.getByTestId('email-input');
-    const inputPassword = screen.getByTestId('password-input');
-    const buttonEntrar = screen.getByRole('button', { name: /entrar/i });
     renderWithRouterAndRedux(<App />);
+    const buttonEntrar = screen.getByText(/entrar/i);
+    const inputEmail = screen.getByLabelText('email');
+    const inputPassword = screen.getByLabelText('senha');
 
     expect(buttonEntrar).toBeInTheDocument();
     expect(inputEmail).toBeInTheDocument();
     expect(inputPassword).toBeInTheDocument();
   });
-
-  //   test('Verifique se o email é validado', () => {
-  //     const verifyEmail = (email);
-
-  //     expect(buttonEntrar).toBeInTheDocument();
-  //   });
 
   test('Verifique se o botão está desabilitado se o email não está no formato "alguem@alguem.com" e a se senha tem menos de 6 caracteres', async () => {
     renderWithRouterAndRedux(<App />);
