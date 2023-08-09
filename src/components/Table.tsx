@@ -1,7 +1,6 @@
 import { useSelector } from 'react-redux';
 import { ExpensesType, RootCombine } from '../types';
 import '../svg/edit.svg';
-import '../svg/trash.svg';
 
 function Table() {
   const { expenses } = useSelector((state: RootCombine) => state.wallet);
@@ -53,7 +52,9 @@ function Table() {
               {' '}
               |
               {' '}
-              <img src="trash.svg" alt="Apagar" />
+              <button data-testid="delete-btn">
+                Excluir
+              </button>
             </td>
           </tr>
         ))}

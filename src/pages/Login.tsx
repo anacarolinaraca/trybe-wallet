@@ -43,7 +43,7 @@ function Login() {
   return (
     <form onSubmit={ validateForms }>
       <label htmlFor="input-email">
-        email:
+        email
         <input
           type="email"
           name="email"
@@ -54,7 +54,7 @@ function Login() {
         />
       </label>
       <label htmlFor="input-password">
-        senha:
+        senha
         <input
           type="password"
           name="password"
