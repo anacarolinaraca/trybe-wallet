@@ -48,7 +48,7 @@ function Table() {
               Real
             </td>
             <td>
-              <img src="edit.svg" alt="Editar" />
+              <img src="../src/svg/edit.svg" alt="Editar" />
               {' '}
               |
               {' '}
