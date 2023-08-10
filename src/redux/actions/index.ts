@@ -19,3 +19,8 @@ export const addExpenses = ({ expenses }: GlobalWallet) => ({
   type: ADD_EXPENSES,
   payload: expenses,
 });
+
+export const deleteExpense = (id: number) => ({
+  type: DELETE_EXPENSES,
+  payload: id,
+});

@@ -7,10 +7,12 @@ function Header() {
   const globalWallet = useSelector((rootReducer: RootCombine)
   : GlobalWallet => rootReducer.wallet);
 
-  const totalExpenses = globalWallet.expenses.reduce((total, expense) => {
-    const exchangeRate = Number(expense.exchangeRates[expense.currency].ask);
-    return total + Number(expense.value) * exchangeRate;
-  }, 0);
+  const totalExpenses = (globalWallet.expenses.length > 0)
+    ? globalWallet.expenses.reduce((total, expense) => {
+      const exchangeRate = Number(expense.exchangeRates[expense.currency].ask);
+      return total + Number(expense.value) * exchangeRate;
+    }, 0)
+    : 0;
 
   return (
     <header>

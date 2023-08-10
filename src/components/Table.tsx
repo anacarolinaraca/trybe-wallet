@@ -1,9 +1,11 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { ExpensesType, RootCombine } from '../types';
 import '../svg/edit.svg';
+import { deleteExpense } from '../redux/actions';
 
 function Table() {
   const { expenses } = useSelector((state: RootCombine) => state.wallet);
+  const dispatch = useDispatch();
   return (
     <table>
       <thead>
@@ -57,6 +59,7 @@ function Table() {
               {' '}
               <button
                 data-testid="delete-btn"
+                onClick={ () => dispatch(deleteExpense(expense.id)) }
               >
                 Excluir
               </button>
