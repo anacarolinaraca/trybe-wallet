@@ -1,7 +1,7 @@
 import { screen, waitFor } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
-import { renderWithRouterAndRedux } from './helpers/renderWith';
-import App from '../App';
+import { renderWithRouterAndRedux } from './renderWith';
+import App from '../../App';
 
 describe('Testes no Login', () => {
   const email = 'alguem@alguem.com';

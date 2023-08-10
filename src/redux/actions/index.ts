@@ -3,6 +3,7 @@ import { GlobalWallet } from '../../types';
 export const LOGIN_EMAIL = 'LOGIN_EMAIL';
 export const CURRENCY = 'CURRENCY';
 export const ADD_EXPENSES = 'ADD_EXPENSES';
+export const DELETE_EXPENSES = 'DELETE_EXPENSES';
 
 export const setEmailAction = (email: string) => ({
   type: LOGIN_EMAIL,

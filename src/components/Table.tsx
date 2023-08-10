@@ -48,11 +48,16 @@ function Table() {
               Real
             </td>
             <td>
-              <img src="../src/svg/edit.svg" alt="Editar" />
+              <img
+                src="../src/svg/edit.svg"
+                alt="Editar"
+              />
               {' '}
               |
               {' '}
-              <button data-testid="delete-btn">
+              <button
+                data-testid="delete-btn"
+              >
                 Excluir
               </button>
             </td>
