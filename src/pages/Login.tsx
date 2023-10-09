@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setEmailAction } from '../redux/actions';
+import style from '../styles/Login.module.css';
 
 function Login() {
   const [passwordValidation, setPasswordValidation] = useState('');
@@ -41,32 +42,47 @@ function Login() {
   };
 
   return (
-    <form onSubmit={ validateForms }>
-      <label htmlFor="input-email">
-        email
-        <input
-          type="email"
-          name="email"
-          id="input-email"
-          data-testid="email-input"
-          value={ emailValidation }
-          onChange={ validateSetEmail }
-        />
-      </label>
-      <label htmlFor="input-password">
-        senha
-        <input
-          type="password"
-          name="password"
-          id="input-password"
-          data-testid="password-input"
-          minLength={ 6 }
-          value={ passwordValidation }
-          onChange={ validateSetPassword }
-        />
-      </label>
-      <button type="submit" disabled={ disabled }>Entrar</button>
-    </form>
+    <div className={ style.containerElements }>
+      <h1 className={ style.titleTrybeWallet }>
+        Trybe Wallet
+      </h1>
+      <form className={ style.containerForm } onSubmit={ validateForms }>
+        <label className={ style.containerFormLabel } htmlFor="input-email">
+          email
+          <input
+            className={ style.containerFormInput }
+            type="email"
+            name="email"
+            id="input-email"
+            data-testid="email-input"
+            value={ emailValidation }
+            onChange={ validateSetEmail }
+          />
+        </label>
+        <label className={ style.containerFormLabel } htmlFor="input-password">
+          senha
+          <input
+            className={ style.containerFormInput }
+            type="password"
+            name="password"
+            id="input-password"
+            data-testid="password-input"
+            minLength={ 6 }
+            value={ passwordValidation }
+            onChange={ validateSetPassword }
+          />
+        </label>
+        <button
+          className={ style.containerFormButton }
+          type="submit"
+          disabled={ disabled }
+        >
+          Entrar
+
+        </button>
+      </form>
+    </div>
+
   );
 }
 

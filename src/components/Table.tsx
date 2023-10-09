@@ -2,14 +2,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ExpensesType, RootCombine } from '../types';
 import '../svg/edit.svg';
 import { deleteExpense } from '../redux/actions';
+import style from '../styles/Table.module.css';
 
 function Table() {
   const { expenses } = useSelector((state: RootCombine) => state.wallet);
   const dispatch = useDispatch();
   return (
-    <table>
+    <table className={ style.containerTable }>
       <thead>
-        <tr>
+        <tr className={ style.containerTableTitle }>
           <th>Descrição</th>
           <th>Tag</th>
           <th>Método de pagamento</th>
@@ -23,7 +24,7 @@ function Table() {
       </thead>
       <tbody>
         {expenses.map((expense: ExpensesType) => (
-          <tr key={ expense.id }>
+          <tr className={ style.containerTableExpenses } key={ expense.id }>
             <td>
               { expense.description }
             </td>
@@ -58,6 +59,7 @@ function Table() {
               |
               {' '}
               <button
+                className={ style.containerTableButton }
                 data-testid="delete-btn"
                 onClick={ () => dispatch(deleteExpense(expense.id)) }
               >

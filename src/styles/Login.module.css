@@ -1,0 +1,44 @@
+.containerElements {
+  align-items: center;
+  background-color: #f3f3f3;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  width: 100vw;
+}
+
+.titleTrybeWallet {
+  font-size: 55px;
+}
+
+.containerForm {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.containerFormLabel {
+  font-size: 25px;
+  padding: 5px;
+}
+
+.containerFormInput {
+  border: 0.1px solid #777;
+  border-radius: 5px;
+  margin: 8px;
+  padding: 10px;
+}
+
+.containerFormButton {
+  background-color: #fab3ba;
+  border: none;
+  border-radius: 5px;
+  color: #f0283d;
+  padding: 10px;
+}
+
+.containerFormButton:enabled {
+  background-color: #d9dafc;
+  color: #2d33f0;
+}

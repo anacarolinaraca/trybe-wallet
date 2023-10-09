@@ -1,0 +1,26 @@
+.containerTable {
+  border: 0.5px solid;
+  margin: 0 10px;
+}
+
+.containerTableTitle th {
+  background-color: #79aabf;
+  border: 0.5px solid;
+}
+
+.containerTableExpenses td {
+  border: 0.5px solid;
+  text-align: center;
+}
+
+.containerTableExpenses td img {
+  padding: 0;
+  vertical-align: middle;
+  width: 30px;
+}
+
+.containerTableButton {
+  background-color: #595ee7cd;
+  border-radius: 5px;
+  padding: 5px;
+}

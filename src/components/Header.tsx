@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
 import { RootCombine, GlobalUser, GlobalWallet } from '../types';
+import style from '../styles/Header.module.css';
 
 function Header() {
   const globalState = useSelector((stateUser: RootCombine):GlobalUser => stateUser.user);
@@ -15,8 +16,8 @@ function Header() {
     : 0;
 
   return (
-    <header>
-      <p data-testid="email-field">
+    <header className={ style.containerHeader }>
+      <p className={ style.textEmail } data-testid="email-field">
         Email:
         {' '}
         {globalState.email}

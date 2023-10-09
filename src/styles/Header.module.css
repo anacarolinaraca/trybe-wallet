@@ -1,0 +1,6 @@
+.containerHeader {
+  background-color: #595ee7cd;
+  display: flex;
+  font-size: 20px;
+  justify-content: space-evenly;
+}

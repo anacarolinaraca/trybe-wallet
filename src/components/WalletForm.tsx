@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { fetchCurrencies } from '../services/api';
 import { GlobalWallet } from '../types';
 import { addCurrencies, addExpenses } from '../redux/actions';
+import style from '../styles/WalletFrom.module.css';
 
 function WalletForm() {
   const [currencies, setCurrencies] = useState<GlobalWallet[]>([]);
@@ -67,50 +68,49 @@ function WalletForm() {
   };
 
   return (
-    <form>
-      <label htmlFor="input-value">
+    <form className={ style.containerForm }>
+      <label className={ style.containerFormLabel } htmlFor="input-value">
         Valor da Despesa:
+        <input
+          className={ style.containerFormInput }
+          type="number"
+          name="value"
+          id="input-value"
+          data-testid="value-input"
+          onChange={ (event) => {
+            setExpenses({ ...expenses, value: event.target.value });
+          } }
+          value={ expenses.value }
+        />
       </label>
-      <input
-        type="text"
-        name="value"
-        id="input-value"
-        data-testid="value-input"
-        onChange={ (event) => {
-          setExpenses({ ...expenses, value: event.target.value });
-        } }
-        value={ expenses.value }
-      />
-
-      <label htmlFor="input-description">
+      <label className={ style.containerFormLabel } htmlFor="input-description">
         Descrição da Despesa:
+        <input
+          className={ style.containerFormInput }
+          type="text"
+          name="description"
+          id="input-description"
+          data-testid="description-input"
+          onChange={ (event) => {
+            setExpenses({ ...expenses, description: event.target.value });
+          } }
+          value={ expenses.description }
+        />
       </label>
-      <input
-        type="text"
-        name="description"
-        id="input-description"
-        data-testid="description-input"
-        onChange={ (event) => {
-          setExpenses({ ...expenses, description: event.target.value });
-        } }
-        value={ expenses.description }
 
-      />
-
-      <label htmlFor="select-currency">
+      <label className={ style.containerFormLabel } htmlFor="select-currency">
         Seleciona a Moeda:
-      </label>
-      <select
-        name="currency"
-        id="select-currency"
-        data-testid="currency-input"
-        onChange={ (event) => {
-          setExpenses({ ...expenses, currency: event.target.value });
-        } }
-        value={ expenses.currency }
-
-      >
-        {
+        <select
+          className={ style.containerFormSelectCoin }
+          name="currency"
+          id="select-currency"
+          data-testid="currency-input"
+          onChange={ (event) => {
+            setExpenses({ ...expenses, currency: event.target.value });
+          } }
+          value={ expenses.currency }
+        >
+          {
         Object.keys(currencies).map((currency) => (
           <option
             key={ currency }
@@ -120,63 +120,71 @@ function WalletForm() {
           </option>
         ))
         }
-      </select>
+        </select>
+      </label>
 
-      <label htmlFor="select-method">
+      <label className={ style.containerFormLabel } htmlFor="select-method">
         Método de Pagamento:
+        <select
+          className={ style.containerFormSelect }
+          name="method"
+          id="select-method"
+          data-testid="method-input"
+          onChange={ (event) => {
+            setExpenses({ ...expenses, method: event.target.value });
+          } }
+          value={ expenses.method }
+        >
+          {/* <option value="">{null}</option> */}
+
+          <option value="Dinheiro">
+            Dinheiro
+          </option>
+          <option value="Cartão de crédito">
+            Cartão de crédito
+          </option>
+          <option value="Cartão de débito">
+            Cartão de débito
+          </option>
+        </select>
       </label>
-      <select
-        name="method"
-        id="select-method"
-        data-testid="method-input"
-        onChange={ (event) => {
-          setExpenses({ ...expenses, method: event.target.value });
-        } }
-        value={ expenses.method }
-      >
-        {/* <option value="">{null}</option> */}
 
-        <option value="Dinheiro">
-          Dinheiro
-        </option>
-        <option value="Cartão de crédito">
-          Cartão de crédito
-        </option>
-        <option value="Cartão de débito">
-          Cartão de débito
-        </option>
-      </select>
-
-      <label htmlFor="select-tag">
+      <label className={ style.containerFormLabel } htmlFor="select-tag">
         Categoria:
+        <select
+          className={ style.containerFormSelect }
+          name="tag"
+          id="select-tag"
+          data-testid="tag-input"
+          onChange={ (event) => {
+            setExpenses({ ...expenses, tag: event.target.value });
+          } }
+          value={ expenses.tag }
+        >
+          {/* <option value="">{null}</option> */}
+          <option value="Alimentação">
+            Alimentação
+          </option>
+          <option value="Lazer">
+            Lazer
+          </option>
+          <option value="Trabalho">
+            Trabalho
+          </option>
+          <option value="Transporte">
+            Transporte
+          </option>
+          <option value="Saúde">
+            Saúde
+          </option>
+        </select>
       </label>
-      <select
-        name="tag"
-        id="select-tag"
-        data-testid="tag-input"
-        onChange={ (event) => {
-          setExpenses({ ...expenses, tag: event.target.value });
-        } }
-        value={ expenses.tag }
+
+      <button
+        className={ style.containerFormButton }
+        type="submit"
+        onClick={ (event) => setExpensesStore(event) }
       >
-        {/* <option value="">{null}</option> */}
-        <option value="Alimentação">
-          Alimentação
-        </option>
-        <option value="Lazer">
-          Lazer
-        </option>
-        <option value="Trabalho">
-          Trabalho
-        </option>
-        <option value="Transporte">
-          Transporte
-        </option>
-        <option value="Saúde">
-          Saúde
-        </option>
-      </select>
-      <button type="submit" onClick={ (event) => setExpensesStore(event) }>
         Adicionar despesa
       </button>
     </form>
